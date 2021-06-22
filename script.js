@@ -9,8 +9,11 @@ firstIncreaseButton.addEventListener('click', () => {
     if (firstIncreaseButton.value = ' ') {
         firstInputBox.value = 0;
     }
-    
+
     firstInputBox.value = parseFloat(firstInputBox.value) + 1
+
+
+    // test to show........
     
 
 })
