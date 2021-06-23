@@ -48,10 +48,17 @@ economyDecreaseButton.addEventListener('click', () => {
 // created function to avoid duplicate code
 function increaseDecrease(inputBox, ticketPrice, isIncrease, value){
     if(isIncrease == true){
-        inputBox.value = parseInt(inputBox.value) + 1;
+        inputBox.value = parseInt(inputBox.value) + 1;     
     }
     else{
         inputBox.value = parseInt(inputBox.value) - 1;
+        if(inputBox.value < 0){
+                swal({
+                    title: "opps! Negative number doesn't be allowed here",
+                    icon: "warning",
+                  });
+            
+        }
     }  
     ticketPrice = inputBox.value * value;
 }
