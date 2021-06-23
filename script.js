@@ -13,79 +13,48 @@ let total = document.querySelector('#total');
 let firstTicketPrice;
 let economyTicketPrice;
 
-
 // set initial value of input boxes
 firstInputBox.value = 0;
 economyInputBox.value = 0;
 
+// first class increase button handler
+firstIncreaseButton.addEventListener('click', () => {
+    increaseDecrease(firstInputBox, firstTicketPrice, true, 150);
+    calculation(subTotal, firstInputBox, economyInputBox, vat, total);
+})
 
-function increaseDecrease(inputBox, ticketPrice, isIncrease){
+// first class decrease button handler
+firstDecreaseButton.addEventListener('click', () => {
+    increaseDecrease(firstInputBox, firstTicketPrice, false, 150);
+    calculation(subTotal, firstInputBox, economyInputBox, vat, total);
+})
+
+// economy increase button handler
+economyIncreaseButton.addEventListener('click', () => {
+    increaseDecrease(economyInputBox, economyTicketPrice, true, 100);
+    calculation(subTotal, firstInputBox, economyInputBox, vat, total);
+})
+
+// economy decrease button handler
+economyDecreaseButton.addEventListener('click', () => {
+    increaseDecrease(economyInputBox, economyTicketPrice, false, 100);
+    calculation(subTotal, firstInputBox, economyInputBox, vat, total);
+
+})
+
+// created function to avoid duplicate code
+function increaseDecrease(inputBox, ticketPrice, isIncrease, value){
     if(isIncrease == true){
         inputBox.value = parseInt(inputBox.value) + 1;
     }
     else{
         inputBox.value = parseInt(inputBox.value) - 1;
     }  
-    ticketPrice = inputBox.value * 150;
+    ticketPrice = inputBox.value * value;
 }
 
-// first class increase button handler
-firstIncreaseButton.addEventListener('click', () => {
-    // firstInputBox.value = parseInt(firstInputBox.value) + 1;
-    // firstTicketPrice = firstInputBox.value * 150;
-    increaseDecrease(firstInputBox, firstTicketPrice, true);
-    // calculate(firstInputBox, firstTicketPrice);
-    // subTotal.innerText = parseFloat(firstTicketPrice) + parseFloat(economyTicketPrice);
+function calculation(subTotal, firstInputBox, economyInputBox, vat, total){
     subTotal.innerText = parseFloat(firstInputBox.value * 150) + parseFloat(economyInputBox.value * 100);
-    vat.innerText = parseInt(subTotal.innerText) * (10 / 100)
+    vat.innerText = parseInt(subTotal.innerText) * (10 / 100);
     total.innerText = parseInt(subTotal.innerText) + parseInt(vat.innerText);
-})
-
-
-
-
-// first class decrease button handler
-firstDecreaseButton.addEventListener('click', () => {
-    // firstInputBox.value = parseInt(firstInputBox.value) - 1;
-    // firstTicketPrice = firstInputBox.value * 150;
-
-    increaseDecrease(firstInputBox, firstTicketPrice, false)
-    // subTotal.innerText = parseFloat(firstTicketPrice) + parseFloat(economyTicketPrice);
-    subTotal.innerText = parseFloat(firstInputBox.value * 150) + parseFloat(economyInputBox.value * 100);
-    vat.innerText = parseInt(subTotal.innerText) * (10 / 100)
-    total.innerText = parseInt(subTotal.innerText) + parseInt(vat.innerText);
-
-
-
-    console.log(firstTicketPrice);
-})
-
-// economy increase button handler
-economyIncreaseButton.addEventListener('click', () => {
-    economyInputBox.value = parseInt(economyInputBox.value) + 1;
-    economyTicketPrice = economyInputBox.value * 100;
-    // subTotal.innerText = parseFloat(firstTicketPrice) + parseFloat(economyTicketPrice);
-    subTotal.innerText = parseFloat(firstInputBox.value * 150) + parseFloat(economyInputBox.value * 100);
-    vat.innerText = parseInt(subTotal.innerText) * (10 / 100)
-    total.innerText = parseInt(subTotal.innerText) + parseInt(vat.innerText);
-
-
-    console.log(economyTicketPrice);
-})
-
-// economy decrease button handler
-economyDecreaseButton.addEventListener('click', () => {
-    economyInputBox.value = parseInt(economyInputBox.value) - 1;
-    economyTicketPrice = economyInputBox.value * 100;
-    // subTotal.innerText = parseFloat(firstTicketPrice) + parseFloat(economyTicketPrice);
-    subTotal.innerText = parseFloat(firstInputBox.value * 150) + parseFloat(economyInputBox.value * 100);
-    vat.innerText = parseInt(subTotal.innerText) * (10 / 100)
-    total.innerText = parseInt(subTotal.innerText) + parseInt(vat.innerText);
-
-
-
-    console.log(economyTicketPrice);
-})
-
-// created function to avoid duplicate code
-
+}
