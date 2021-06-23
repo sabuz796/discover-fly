@@ -10,6 +10,9 @@ let subTotal = document.querySelector('#subtotal');
 let vat = document.querySelector('#vat');
 let total = document.querySelector('#total');
 
+let bookNow = document.querySelector('#book-now');
+
+
 let firstTicketPrice;
 let economyTicketPrice;
 
@@ -58,3 +61,11 @@ function calculation(subTotal, firstInputBox, economyInputBox, vat, total){
     vat.innerText = parseInt(subTotal.innerText) * (10 / 100);
     total.innerText = parseInt(subTotal.innerText) + parseInt(vat.innerText);
 }
+
+bookNow.addEventListener('click',()=>{
+    swal({
+        icon: "success",
+        title: "Discover fly!",
+        text: "Your invoice is here",
+      });
+})
